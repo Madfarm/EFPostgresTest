@@ -15,6 +15,7 @@ public class JacketController : ControllerBase
         _context = context;
     }
 
+    // lets gooo
     [HttpGet]
     public async Task<ActionResult<List<Jacket>>> Get()
     {
