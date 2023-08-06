@@ -74,4 +74,33 @@ public class JacketController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Jacket>> EditJacket(int id, JacketDto updated)
+    {
+        var jacket = await _context.JacketsTable.FindAsync(id);
+
+        if (jacket is null) 
+        {
+            return NoContent();
+        }
+
+        jacket.Price = updated.Price;
+        jacket.Size = updated.Size;
+        jacket.Material = updated.Material;
+
+        _context.Entry(jacket).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch(Exception e) 
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
+
+        return NoContent();
+    }
 }
