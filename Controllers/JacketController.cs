@@ -28,4 +28,18 @@ public class JacketController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Jacket>> GetById(int id)
+    {
+        var jacket = await _context.JacketsTable.FindAsync(id);
+
+        if (jacket is null)
+        {
+            return NoContent();
+        }
+
+        return jacket;
+
+    }
 }
