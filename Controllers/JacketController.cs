@@ -57,4 +57,21 @@ public class JacketController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new {id = newJacket.Id}, newJacket);
     }
+
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteJacket(int id)
+    {
+        var jacket = await _context.JacketsTable.FindAsync(id);
+
+        if (jacket is null)
+        {
+            return NotFound();
+        }
+
+        _context.JacketsTable.Remove(jacket);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
