@@ -15,7 +15,7 @@ public class JacketController : ControllerBase
         _context = context;
     }
 
-    // lets gooo
+    
     [HttpGet]
     public async Task<ActionResult<List<Jacket>>> Get()
     {
@@ -40,6 +40,21 @@ public class JacketController : ControllerBase
         }
 
         return jacket;
+    }
 
+    [HttpPost]
+    public async Task<ActionResult<Jacket>> CreateJacket([FromBody] JacketDto jacketDto)
+    {
+        Jacket newJacket = new()
+        {
+            Price = jacketDto.Price,
+            Size = jacketDto.Size,
+            Material = jacketDto.Material,
+        };
+
+        await _context.JacketsTable.AddAsync(newJacket);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetById), new {id = newJacket.Id}, newJacket);
     }
 }
