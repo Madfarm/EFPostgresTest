@@ -8,4 +8,5 @@ public class PsqlDbContext : DbContext
     public PsqlDbContext(DbContextOptions<PsqlDbContext> options) : base(options) { }
     
     public DbSet<Jacket> JacketsTable { get; set; }
+    public DbSet<Collection> CollectionsTable { get; set; }
 }
