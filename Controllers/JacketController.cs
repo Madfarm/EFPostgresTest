@@ -7,7 +7,7 @@ namespace EFPostgresTest.Controllers;
 
 
 [ApiController]
-[Route("api/collections/[controller]")]
+[Route("api/collections")]
 public class JacketsController : ControllerBase
 {
     private readonly PsqlDbContext _context;
@@ -18,13 +18,13 @@ public class JacketsController : ControllerBase
 
     
     [HttpGet]
-    public async Task<ActionResult<List<Jacket>>> Get()
+    public async Task<ActionResult<List<Collection>>> Get()
     {
-        var jackets = await _context.JacketsTable.ToListAsync();
+        var collections = await _context.CollectionsTable.ToListAsync();
         
-        if (jackets.Count != 0)
+        if (collections.Count != 0)
         {
-            return jackets;
+            return collections;
         }
 
         return NoContent();
