@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EFPostgresTest.Controllers;
 
+
 [ApiController]
 [Route("api/collections/[controller]")]
 public class JacketsController : ControllerBase
 {
     private readonly PsqlDbContext _context;
-    public JacketController(PsqlDbContext context) 
+    public JacketsController(PsqlDbContext context) 
     {
         _context = context;
     }
