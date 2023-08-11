@@ -98,8 +98,7 @@ public class JacketsController : ControllerBase
         }
         catch(Exception e) 
         {
-            System.Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e);
         }
 
         return NoContent();
