@@ -99,6 +99,7 @@ public class JacketsController : ControllerBase
         catch(Exception e) 
         {
             Console.WriteLine(e);
+            throw;
         }
 
         return NoContent();
